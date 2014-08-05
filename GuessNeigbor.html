@@ -1,25 +1,29 @@
 <script>
-    var myNeighborhood = "Ballard";
-	var Fremont = "Fremont";
-	var Queen_Anne = "Queen Anne";
+	var neighborhoods=['Ballard','Fremont','Queen Anne']
+	var hints=["Here's a hint, there are huge Locks there", "It has a cave troll", "It's a hill"]
+	var selection=Math.floor((Math.random()*neighborhoods.length))
+	var myNeighborhood=neighborhoods[selection]
+	var myHint=hints[selection]
 	var guess, guess2, outputMessage;
-
-	guess = prompt("What neighborhood do you think I want to eat in? Choose Ballard, Fremont, or Queen Anne");
-	if (guess === myNeighborhood) {
-		outputMessage = "Let's eat!";
-	}
-	else { 
-		guess2 = prompt("Here's a hint, there are huge Locks there");
-		if (guess2 === myNeighborhood) {
-			outputMessage = "I'm hungry, let's go!";
+	var running=true
+	while(running){
+		guess = prompt("What neighborhood do you think I want to eat in? Choose Ballard, Fremont, or Queen Anne");
+		if (guess === myNeighborhood) {
+			outputMessage = "Let's eat!";
+			running=false
 		}
 		else {
-		outputMessage = "Look at your map and try again";
+			guess2 = prompt(myHint);
+			if (guess2 === myNeighborhood) {
+				outputMessage = "I'm hungry, let's go!";
+				running=false
+			}
+			else {
+			outputMessage = "Look at your map and try again";
+			running=false
+			}
 		}
 	}
-	
-
-	alert(outputMessage);
-
+	alert(outputMessage)
 
 </script>
